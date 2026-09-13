@@ -81,3 +81,36 @@ export async function logout() {
   await supabase.auth.signOut()
   redirect('/login')
 }
+
+export async function resetPassword(formData: FormData) {
+  const supabase = await createClient()
+  const email = formData.get('email') as string
+
+  const { error } = await supabase.auth.resetPasswordForEmail(email, {
+    redirectTo: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/update-password`,
+  })
+
+  if (error) {
+    redirect('/login?error=' + encodeURIComponent(error.message))
+  }
+
+  redirect('/login?message=Un email de réinitialisation vous a été envoyé.')
+}
+
+export async function updatePassword(formData: FormData) {
+  const supabase = await createClient()
+  const password = formData.get('password') as string
+  const passwordConfirm = formData.get('passwordConfirm') as string
+
+  if (password !== passwordConfirm) {
+    redirect('/update-password?error=Les mots de passe ne correspondent pas.')
+  }
+
+  const { error } = await supabase.auth.updateUser({ password })
+
+  if (error) {
+    redirect('/update-password?error=' + encodeURIComponent(error.message))
+  }
+
+  redirect('/dashboard?message=Mot de passe mis à jour avec succès.')
+}

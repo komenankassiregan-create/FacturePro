@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { login, signup } from './actions';
+import { login, signup, resetPassword } from './actions';
 
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
@@ -15,6 +15,7 @@ export default function LoginClient() {
   const successMessage = searchParams.get('message');
 
   const [isSignupModalOpen, setIsSignupModalOpen] = useState(false);
+  const [isResetPasswordModalOpen, setIsResetPasswordModalOpen] = useState(false);
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -110,9 +111,13 @@ export default function LoginClient() {
                 <label className="text-xs font-bold text-slate-700 uppercase tracking-wider" htmlFor="password">
                   Mot de passe
                 </label>
-                <a href="#" className="text-xs font-semibold text-brand-emerald hover:text-brand-emerald-dark transition-colors">
+                <button 
+                  type="button" 
+                  onClick={() => setIsResetPasswordModalOpen(true)}
+                  className="text-xs font-semibold text-brand-emerald hover:text-brand-emerald-dark transition-colors"
+                >
                   Oublié ?
-                </a>
+                </button>
               </div>
               <div className="relative">
                 <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
@@ -306,6 +311,47 @@ export default function LoginClient() {
             </button>
             <button type="button" onClick={() => setIsSignupModalOpen(false)} className="text-sm font-semibold text-slate-500 hover:text-slate-900 transition-colors">
               Annuler
+            </button>
+          </div>
+        </form>
+      </Modal>
+
+      {/* Modal de réinitialisation de mot de passe */}
+      <Modal 
+        isOpen={isResetPasswordModalOpen} 
+        onClose={() => setIsResetPasswordModalOpen(false)} 
+        title="Mot de passe oublié ?"
+      >
+        <form action={resetPassword} className="space-y-4">
+          <p className="text-sm text-slate-500 mb-4">
+            Entrez votre adresse email, nous vous enverrons un lien pour réinitialiser votre mot de passe.
+          </p>
+          
+          <div className="space-y-1.5">
+            <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1" htmlFor="reset-email">
+              Adresse email *
+            </label>
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                <Mail className="h-5 w-5 text-slate-400" />
+              </div>
+              <Input
+                id="reset-email"
+                name="email"
+                type="email"
+                placeholder="vous@entreprise.com"
+                className="pl-11 h-12 w-full bg-slate-50 border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-brand-emerald/20 focus:border-brand-emerald transition-all"
+                required
+              />
+            </div>
+          </div>
+          
+          <div className="pt-2">
+            <button 
+              type="submit"
+              className="w-full h-12 rounded-xl font-bold text-sm bg-brand-emerald hover:bg-brand-emerald-dark text-white shadow-subtle-glow hover:-translate-y-0.5 transition-all duration-200"
+            >
+              Envoyer le lien de réinitialisation
             </button>
           </div>
         </form>
