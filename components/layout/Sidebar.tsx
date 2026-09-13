@@ -2,9 +2,10 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { LayoutDashboard, FileText, Users, Settings, Package, X } from "lucide-react";
+import { LayoutDashboard, FileText, Users, Settings, Package, X, LogOut } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/Button";
+import { logout } from "@/app/login/actions";
 
 const navigation = [
   { name: "Dashboard", href: "/dashboard", icon: LayoutDashboard },
@@ -83,7 +84,7 @@ export function Sidebar({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
 
         {/* Upgrade Plan Section */}
         <div className="p-4 mt-auto">
-          <div className="glass-card rounded-xl p-4 border border-border">
+          <div className="glass-card rounded-xl p-4 border border-border mb-4">
             <div className="flex items-center justify-center w-10 h-10 rounded-lg bg-accent/20 text-accent mb-3">
               <Package className="w-5 h-5" />
             </div>
@@ -95,6 +96,16 @@ export function Sidebar({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
               Mettre à niveau
             </Button>
           </div>
+          
+          <form action={logout}>
+            <button
+              type="submit"
+              className="group flex w-full items-center gap-3 px-3 py-2.5 rounded-md text-sm font-medium text-red-600 hover:bg-red-50 hover:text-red-700 transition-all duration-200"
+            >
+              <LogOut className="flex-shrink-0 w-5 h-5" />
+              Se déconnecter
+            </button>
+          </form>
         </div>
       </div>
     </>
