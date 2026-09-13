@@ -92,8 +92,10 @@ export function Sidebar({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
             <p className="text-xs text-muted mt-1 mb-3">
               Débloquez des factures illimitées et des insights intelligents.
             </p>
-            <Button className="w-full text-xs h-8" variant="primary">
-              Mettre à niveau
+            <Button className="w-full text-xs h-8 p-0" variant="primary">
+              <Link href="/#tarifs" className="w-full h-full flex items-center justify-center">
+                Mettre à niveau
+              </Link>
             </Button>
           </div>
           

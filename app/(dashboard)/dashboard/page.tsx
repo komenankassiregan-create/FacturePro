@@ -5,6 +5,7 @@ import { RecentInvoices } from "@/components/dashboard/RecentInvoices";
 import { FileText, TrendingUp, CheckCircle, Clock } from "lucide-react";
 import { createClient } from "@/lib/supabase/server";
 import { formatCurrency } from "@/lib/utils";
+import Link from "next/link";
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -46,9 +47,18 @@ export default async function DashboardPage() {
 
   return (
     <div className="space-y-6">
-      <div>
-        <h1 className="text-2xl font-bold font-display text-primary">Tableau de bord</h1>
-        <p className="text-muted mt-1">Bienvenue sur FacturePro. Voici un résumé de votre activité.</p>
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-bold font-display text-primary">Tableau de bord</h1>
+          <p className="text-muted mt-1">Bienvenue sur FacturePro. Voici un résumé de votre activité.</p>
+        </div>
+        <Link 
+          href="/invoices/new"
+          className="inline-flex items-center justify-center gap-2 px-4 py-2 bg-accent text-white rounded-lg font-medium hover:bg-accent/90 transition-colors shadow-sm"
+        >
+          <FileText className="w-4 h-4" />
+          Nouvelle facture
+        </Link>
       </div>
 
       {/* KPI Cards */}
