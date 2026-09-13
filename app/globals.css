@@ -1,26 +1,49 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* Couleurs de fond */
+  --color-base: #0A0F0D;
+  --color-card: #111917;
+  --color-sidebar: #0D1410;
+  
+  /* Couleurs d'accentuation */
+  --color-accent: #22C55E;
+  --color-accent-muted: #16A34A;
+  
+  /* Couleurs de texte */
+  --color-primary: #F0FDF4;
+  --color-muted: #6B7280;
+  
+  /* Bordures et statuts */
+  --color-border: #1F2D24;
+  --color-danger: #EF4444;
+  --color-warning: #F59E0B;
+  --color-success: #22C55E;
+
+  /* Typographie */
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-outfit);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+:root {
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-base);
+  color: var(--color-primary);
+}
+
+/* Classes utilitaires */
+@utility glass-card {
+  background-color: color-mix(in srgb, var(--color-card) 70%, transparent);
+  backdrop-filter: blur(12px);
+  border: 1px solid var(--color-border);
+}
+
+@utility gradient-text {
+  background: linear-gradient(to right, var(--color-primary), var(--color-accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
