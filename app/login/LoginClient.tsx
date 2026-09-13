@@ -47,131 +47,111 @@ export default function LoginClient() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-base p-4">
-      {/* Container Principal */}
-      <div className="w-full max-w-[400px] relative mt-16">
-        
-        {/* L'en-tête (fond vert émeraude / accent) */}
-        <div className="bg-accent rounded-t-2xl pt-10 pb-16 px-6 text-center relative overflow-hidden">
-          {/* Effet décoratif (cercles) */}
-          <div className="absolute top-4 left-4 w-4 h-4 rounded-full border-2 border-white/20 opacity-50"></div>
-          <div className="absolute bottom-6 right-6 w-3 h-3 rounded-full border-2 border-white/20 opacity-50"></div>
-          
-          <h1 className="text-xl font-display font-bold text-white uppercase tracking-wider">
-            BIENVENUE
-          </h1>
-          <p className="text-white/80 text-xs mt-2 max-w-[250px] mx-auto leading-relaxed">
-            Connectez-vous pour gérer vos factures, clients et paiements en toute simplicité.
-          </p>
-        </div>
+    <div className="min-h-screen flex items-center justify-center bg-slate-50 font-jakarta p-4 relative overflow-hidden">
+      {/* Radiant ambient glows */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand-emerald/10 rounded-full blur-[100px] pointer-events-none"></div>
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-lime/10 rounded-full blur-[80px] pointer-events-none"></div>
 
+      {/* Container Principal */}
+      <div className="w-full max-w-[420px] relative z-10 mt-10">
+        
         {/* Le corps (formulaire) */}
-        <div className="bg-card rounded-b-2xl px-6 pb-8 pt-12 relative shadow-2xl border border-border border-t-0">
+        <div className="bg-white rounded-3xl p-8 sm:p-10 relative shadow-card-lift border border-slate-200">
           
-          {/* Avatar flottant cliquable */}
-          <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 group cursor-pointer" onClick={handleAvatarClick} title="Changer le logo">
-            <div className="w-24 h-24 bg-card rounded-full p-2 shadow-xl border border-border relative overflow-hidden">
-              <div className="w-full h-full bg-sidebar rounded-full flex items-center justify-center overflow-hidden">
-                {avatarUrl ? (
-                  <img src={avatarUrl} alt="Logo" className="w-full h-full object-cover" />
-                ) : (
-                  <User className="w-12 h-12 text-muted mt-4" strokeWidth={1.5} />
-                )}
-              </div>
-              {/* Overlay on hover */}
-              <div className="absolute inset-2 rounded-full bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity">
-                <Camera className="w-6 h-6 text-white" />
-              </div>
-            </div>
-            <input 
-              type="file" 
-              ref={fileInputRef} 
-              onChange={handleFileChange} 
-              accept="image/*" 
-              className="hidden" 
-            />
+          <div className="text-center mb-8">
+            <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight">
+              Facture<span className="text-brand-emerald">Pro</span>
+            </h1>
+            <p className="text-slate-500 text-sm mt-2">
+              Connectez-vous à votre espace
+            </p>
+            <a href="/" className="inline-block mt-3 text-xs font-semibold text-slate-400 hover:text-brand-emerald transition-colors">
+              &larr; Retour à l'accueil
+            </a>
           </div>
 
-          <form action={login} className="space-y-5 mt-4">
+          <form action={login} className="space-y-5">
             
             {/* Messages de succès ou d'erreur */}
             {errorMessage && (
-              <div className="p-3 rounded-lg bg-danger/10 text-danger text-sm text-center border border-danger/20 animate-in fade-in">
+              <div className="p-3 rounded-xl bg-red-50 text-red-600 text-sm text-center border border-red-100 font-medium">
                 {errorMessage}
               </div>
             )}
             {successMessage && (
-              <div className="p-3 rounded-lg bg-accent/10 text-accent text-sm text-center border border-accent/20 animate-in fade-in">
+              <div className="p-3 rounded-xl bg-emerald-50 text-emerald-700 text-sm text-center border border-emerald-100 font-medium">
                 {successMessage}
               </div>
             )}
 
             {/* Email Input */}
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Mail className="h-5 w-5 text-muted" />
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1" htmlFor="email">
+                Email
+              </label>
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                  <Mail className="h-5 w-5 text-slate-400" />
+                </div>
+                <Input
+                  id="email"
+                  name="email"
+                  type="email"
+                  placeholder="votre@email.com"
+                  className="pl-11 h-12 w-full bg-slate-50 border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-brand-emerald/20 focus:border-brand-emerald transition-all"
+                  required
+                />
               </div>
-              <Input
-                id="email"
-                name="email"
-                type="email"
-                placeholder="Adresse email"
-                className="pl-10 h-12 bg-sidebar border-border rounded-xl text-primary focus:ring-accent"
-                required
-              />
             </div>
             
             {/* Password Input */}
-            <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Lock className="h-5 w-5 text-muted" />
+            <div className="space-y-1.5">
+              <div className="flex items-center justify-between ml-1">
+                <label className="text-xs font-bold text-slate-700 uppercase tracking-wider" htmlFor="password">
+                  Mot de passe
+                </label>
+                <a href="#" className="text-xs font-semibold text-brand-emerald hover:text-brand-emerald-dark transition-colors">
+                  Oublié ?
+                </a>
               </div>
-              <Input
-                id="password"
-                name="password"
-                type="password"
-                placeholder="Mot de passe"
-                className="pl-10 h-12 bg-sidebar border-border rounded-xl text-primary focus:ring-accent"
-                required
-              />
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                  <Lock className="h-5 w-5 text-slate-400" />
+                </div>
+                <Input
+                  id="password"
+                  name="password"
+                  type="password"
+                  placeholder="••••••••"
+                  className="pl-11 h-12 w-full bg-slate-50 border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-brand-emerald/20 focus:border-brand-emerald transition-all"
+                  required
+                />
+              </div>
             </div>
 
             {/* Bouton de Connexion */}
-            <div className="pt-2">
-              <Button 
+            <div className="pt-4">
+              <button 
                 type="submit"
-                className="w-full h-12 rounded-full font-bold uppercase tracking-wider text-sm shadow-[0_0_15px_rgba(34,197,94,0.3)] hover:shadow-[0_0_25px_rgba(34,197,94,0.5)] transition-all"
+                className="w-full h-12 rounded-xl font-bold text-sm bg-brand-emerald hover:bg-brand-emerald-dark text-white shadow-subtle-glow hover:-translate-y-0.5 transition-all duration-200"
               >
                 Se connecter
-              </Button>
+              </button>
             </div>
 
-            <div className="pt-2">
-              <Button 
-                type="button"
-                onClick={() => setIsSignupModalOpen(true)}
-                variant="ghost"
-                className="w-full text-xs text-muted hover:text-primary transition-colors"
-              >
-                Créer un nouveau compte
-              </Button>
+            {/* Nouveau compte */}
+            <div className="pt-4 text-center border-t border-slate-100 mt-6">
+              <p className="text-sm text-slate-500">
+                Pas encore de compte ?{' '}
+                <button 
+                  type="button"
+                  onClick={() => setIsSignupModalOpen(true)}
+                  className="font-bold text-brand-emerald hover:text-brand-emerald-dark transition-colors"
+                >
+                  Créer un compte
+                </button>
+              </p>
             </div>
-
-            {/* Options additionnelles */}
-            <div className="flex items-center justify-between text-xs text-muted pt-4 border-t border-border/50">
-              <label className="flex items-center gap-2 cursor-pointer hover:text-primary transition-colors">
-                <input 
-                  type="checkbox" 
-                  className="rounded border-muted bg-sidebar text-accent focus:ring-accent"
-                />
-                Se souvenir de moi
-              </label>
-              
-              <a href="#" className="hover:text-accent transition-colors">
-                Mot de passe oublié ?
-              </a>
-            </div>
-
           </form>
         </div>
       </div>
@@ -183,150 +163,150 @@ export default function LoginClient() {
         title="Créer un compte"
       >
         <form action={signup} className="space-y-4">
-          <p className="text-sm text-muted mb-4">
-            7 jours d&apos;essai gratuit — sans carte bancaire
+          <p className="text-sm text-slate-500 mb-4">
+            14 jours d'essai gratuit — sans carte bancaire
           </p>
           
-          <div className="space-y-2">
-            <label className="text-xs font-medium text-muted uppercase tracking-wider" htmlFor="companyName">
-              Nom de l&apos;entreprise / Atelier *
+          <div className="space-y-1.5">
+            <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1" htmlFor="companyName">
+              Nom de l'entreprise *
             </label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Building className="h-4 w-4 text-muted" />
+              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                <Building className="h-5 w-5 text-slate-400" />
               </div>
               <Input
                 id="companyName"
                 name="companyName"
                 type="text"
-                placeholder="Ex: Atelier Sérigraphie Plus"
-                className="pl-10 h-11 bg-sidebar border-border rounded-xl text-primary"
+                placeholder="Ex: Atelier Plus"
+                className="pl-11 h-12 w-full bg-slate-50 border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-brand-emerald/20 focus:border-brand-emerald transition-all"
                 required
               />
             </div>
           </div>
 
           <div className="grid grid-cols-2 gap-4">
-            <div className="space-y-2">
-              <label className="text-xs font-medium text-muted uppercase tracking-wider" htmlFor="firstName">
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1" htmlFor="firstName">
                 Prénom *
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <User className="h-4 w-4 text-muted" />
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                  <User className="h-5 w-5 text-slate-400" />
                 </div>
                 <Input
                   id="firstName"
                   name="firstName"
                   type="text"
                   placeholder="Prénom"
-                  className="pl-10 h-11 bg-sidebar border-border rounded-xl text-primary"
+                  className="pl-11 h-12 w-full bg-slate-50 border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-brand-emerald/20 focus:border-brand-emerald transition-all"
                   required
                 />
               </div>
             </div>
-            <div className="space-y-2">
-              <label className="text-xs font-medium text-muted uppercase tracking-wider" htmlFor="lastName">
+            <div className="space-y-1.5">
+              <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1" htmlFor="lastName">
                 Nom *
               </label>
               <div className="relative">
-                <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                  <User className="h-4 w-4 text-muted" />
+                <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                  <User className="h-5 w-5 text-slate-400" />
                 </div>
                 <Input
                   id="lastName"
                   name="lastName"
                   type="text"
                   placeholder="Nom"
-                  className="pl-10 h-11 bg-sidebar border-border rounded-xl text-primary"
+                  className="pl-11 h-12 w-full bg-slate-50 border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-brand-emerald/20 focus:border-brand-emerald transition-all"
                   required
                 />
               </div>
             </div>
           </div>
           
-          <div className="space-y-2">
-            <label className="text-xs font-medium text-muted uppercase tracking-wider" htmlFor="signup-email">
+          <div className="space-y-1.5">
+            <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1" htmlFor="signup-email">
               Adresse email *
             </label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Mail className="h-4 w-4 text-muted" />
+              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                <Mail className="h-5 w-5 text-slate-400" />
               </div>
               <Input
                 id="signup-email"
                 name="email"
                 type="email"
                 placeholder="vous@entreprise.com"
-                className="pl-10 h-11 bg-sidebar border-border rounded-xl text-primary"
+                className="pl-11 h-12 w-full bg-slate-50 border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-brand-emerald/20 focus:border-brand-emerald transition-all"
                 required
               />
             </div>
           </div>
 
-          <div className="space-y-2">
-            <label className="text-xs font-medium text-muted uppercase tracking-wider" htmlFor="phone">
+          <div className="space-y-1.5">
+            <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1" htmlFor="phone">
               Téléphone
             </label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Phone className="h-4 w-4 text-muted" />
+              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                <Phone className="h-5 w-5 text-slate-400" />
               </div>
               <Input
                 id="phone"
                 name="phone"
                 type="text"
                 placeholder="+225 07 00 00 00 00"
-                className="pl-10 h-11 bg-sidebar border-border rounded-xl text-primary"
+                className="pl-11 h-12 w-full bg-slate-50 border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-brand-emerald/20 focus:border-brand-emerald transition-all"
               />
             </div>
           </div>
           
-          <div className="space-y-2">
-            <label className="text-xs font-medium text-muted uppercase tracking-wider" htmlFor="signup-password">
-              Mot de passe * (min. 6 caractères)
+          <div className="space-y-1.5">
+            <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1" htmlFor="signup-password">
+              Mot de passe *
             </label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Lock className="h-4 w-4 text-muted" />
+              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                <Lock className="h-5 w-5 text-slate-400" />
               </div>
               <Input
                 id="signup-password"
                 name="password"
                 type="password"
                 placeholder="••••••••"
-                className="pl-10 h-11 bg-sidebar border-border rounded-xl text-primary"
+                className="pl-11 h-12 w-full bg-slate-50 border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-brand-emerald/20 focus:border-brand-emerald transition-all"
                 required
               />
             </div>
           </div>
 
-          <div className="space-y-2">
-            <label className="text-xs font-medium text-muted uppercase tracking-wider" htmlFor="signup-password-confirm">
+          <div className="space-y-1.5">
+            <label className="text-xs font-bold text-slate-700 uppercase tracking-wider ml-1" htmlFor="signup-password-confirm">
               Confirmer *
             </label>
             <div className="relative">
-              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
-                <Lock className="h-4 w-4 text-muted" />
+              <div className="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none">
+                <Lock className="h-5 w-5 text-slate-400" />
               </div>
               <Input
                 id="signup-password-confirm"
                 name="passwordConfirm"
                 type="password"
-                placeholder="Répétez le mot de passe"
-                className="pl-10 h-11 bg-sidebar border-border rounded-xl text-primary"
+                placeholder="••••••••"
+                className="pl-11 h-12 w-full bg-slate-50 border-slate-200 rounded-xl text-slate-900 placeholder:text-slate-400 focus:bg-white focus:ring-2 focus:ring-brand-emerald/20 focus:border-brand-emerald transition-all"
                 required
               />
             </div>
           </div>
 
           <div className="flex flex-col gap-3 pt-4 mt-6">
-            <Button type="submit" className="w-full h-11 font-medium bg-blue-600 hover:bg-blue-700 text-white shadow-lg">
+            <button type="submit" className="w-full h-12 rounded-xl font-bold text-sm bg-brand-emerald hover:bg-brand-emerald-dark text-white shadow-subtle-glow hover:-translate-y-0.5 transition-all duration-200">
               Créer mon compte
-            </Button>
-            <Button type="button" variant="ghost" onClick={() => setIsSignupModalOpen(false)} className="text-muted hover:text-primary">
-              &larr; Retour à l&apos;accueil
-            </Button>
+            </button>
+            <button type="button" onClick={() => setIsSignupModalOpen(false)} className="text-sm font-semibold text-slate-500 hover:text-slate-900 transition-colors">
+              Annuler
+            </button>
           </div>
         </form>
       </Modal>

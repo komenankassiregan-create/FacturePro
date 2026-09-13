@@ -37,8 +37,7 @@ export async function updateSession(request: NextRequest) {
     request.nextUrl.pathname.startsWith('/invoices') || 
     request.nextUrl.pathname.startsWith('/clients') || 
     request.nextUrl.pathname.startsWith('/settings') ||
-    request.nextUrl.pathname === '/dashboard' ||
-    request.nextUrl.pathname === '/';
+    request.nextUrl.pathname === '/dashboard';
 
   if (!user && isDashboardRoute) {
     // Rediriger vers login

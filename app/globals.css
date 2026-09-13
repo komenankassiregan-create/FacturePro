@@ -1,44 +1,78 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* Couleurs de fond */
+  /* Couleurs de fond existantes (Dashboard) */
   --color-base: #0A0F0D;
   --color-card: #111917;
   --color-sidebar: #0D1410;
   
-  /* Couleurs d'accentuation */
+  /* Couleurs d'accentuation existantes */
   --color-accent: #22C55E;
   --color-accent-muted: #16A34A;
   
-  /* Couleurs de texte */
+  /* Couleurs de texte existantes */
   --color-primary: #F0FDF4;
   --color-muted: #6B7280;
   
-  /* Bordures et statuts */
+  /* Bordures et statuts existants */
   --color-border: #1F2D24;
   --color-danger: #EF4444;
   --color-warning: #F59E0B;
   --color-success: #22C55E;
 
+  /* Couleurs de la Landing Page */
+  --color-brand-emerald: #00C48C;
+  --color-brand-emerald-dark: #009F72;
+  --color-brand-lime: #E8FA3B;
+  --color-brand-lime-hover: #D7EC26;
+  --color-brand-dark: #0F172A;
+  --color-brand-slate: #1E293B;
+  --color-brand-surface: #F8FAFC;
+  --color-brand-subtle: #F1F5F9;
+
+  /* Ombres de la Landing Page */
+  --shadow-subtle-glow: 0 20px 40px -15px rgba(0, 196, 140, 0.15);
+  --shadow-card-lift: 0 12px 30px -10px rgba(15, 23, 42, 0.08);
+  --shadow-deep-glow: 0 25px 60px -15px rgba(0, 196, 140, 0.25);
+
   /* Typographie */
   --font-sans: var(--font-inter);
   --font-display: var(--font-outfit);
+  --font-jakarta: var(--font-jakarta);
 }
 
-:root {
-  color-scheme: dark;
-}
-
-body {
-  background-color: var(--color-base);
-  color: var(--color-primary);
-}
+/* On ne force plus le mode sombre et le body pour permettre à la Landing Page d'être claire */
 
 /* Classes utilitaires */
 @utility glass-card {
   background-color: color-mix(in srgb, var(--color-card) 70%, transparent);
   backdrop-filter: blur(12px);
   border: 1px solid var(--color-border);
+}
+
+@utility glass-light-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+@utility glass-dark-card {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@utility bg-grid-pattern {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(226, 232, 240, 0.45) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(226, 232, 240, 0.45) 1px, transparent 1px);
+}
+
+@utility hero-glow {
+  background: radial-gradient(circle at 50% 20%, rgba(0, 196, 140, 0.12) 0%, rgba(232, 250, 59, 0.08) 35%, transparent 70%);
 }
 
 @utility gradient-text {
