@@ -129,9 +129,9 @@ export default function InvoiceDetailPage({ params }: { params: Promise<{ id: st
       const opt = {
         margin:       10,
         filename:     `Facture_${invoice.invoice_number}.pdf`,
-        image:        { type: 'jpeg', quality: 0.98 },
+        image:        { type: 'jpeg' as const, quality: 0.98 },
         html2canvas:  { scale: 2, backgroundColor: '#0A0F0D' }, 
-        jsPDF:        { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        jsPDF:        { unit: 'mm' as const, format: 'a4' as const, orientation: 'portrait' as const }
       };
       html2pdf().set(opt).from(element).save();
     }
