@@ -35,7 +35,7 @@ export function StatusPieChart({ data }: { data: { name: string, value: number, 
               ))}
             </Pie>
             <Tooltip 
-              formatter={(value: any) => [`${new Intl.NumberFormat('fr-FR').format(value)} FCFA`, 'Montant']}
+              formatter={(value: number) => [`${new Intl.NumberFormat('fr-FR').format(value)} FCFA`, 'Montant']}
               contentStyle={{ backgroundColor: 'var(--color-card)', borderColor: 'var(--color-border)', borderRadius: '8px' }}
               itemStyle={{ color: 'var(--color-primary)' }}
             />

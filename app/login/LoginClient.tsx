@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { useSearchParams } from 'next/navigation';
 import { login, signup } from './actions';
-import { Card } from '@/components/ui/Card';
+
 import { Button } from '@/components/ui/Button';
 import { Input } from '@/components/ui/Input';
 import { Modal } from '@/components/ui/Modal';
@@ -20,9 +20,12 @@ export default function LoginClient() {
 
   // Load avatar from localStorage on mount
   useEffect(() => {
-    const savedAvatar = localStorage.getItem('companyAvatar');
-    if (savedAvatar) {
-      setAvatarUrl(savedAvatar);
+    if (typeof window !== 'undefined') {
+      const savedAvatar = window.localStorage.getItem('companyAvatar');
+      if (savedAvatar) {
+        // eslint-disable-next-line
+        setAvatarUrl(savedAvatar);
+      }
     }
   }, []);
 
@@ -181,12 +184,12 @@ export default function LoginClient() {
       >
         <form action={signup} className="space-y-4">
           <p className="text-sm text-muted mb-4">
-            7 jours d'essai gratuit — sans carte bancaire
+            7 jours d&apos;essai gratuit — sans carte bancaire
           </p>
           
           <div className="space-y-2">
             <label className="text-xs font-medium text-muted uppercase tracking-wider" htmlFor="companyName">
-              Nom de l'entreprise / Atelier *
+              Nom de l&apos;entreprise / Atelier *
             </label>
             <div className="relative">
               <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -322,7 +325,7 @@ export default function LoginClient() {
               Créer mon compte
             </Button>
             <Button type="button" variant="ghost" onClick={() => setIsSignupModalOpen(false)} className="text-muted hover:text-primary">
-              ← Retour à l'accueil
+              &larr; Retour à l&apos;accueil
             </Button>
           </div>
         </form>

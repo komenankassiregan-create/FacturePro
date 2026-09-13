@@ -16,7 +16,7 @@ export default async function DashboardPage() {
   let totalPending = 0;
   let totalOverdue = 0;
   
-  let recentInvoices: any[] = [];
+  let recentInvoices: { id: string, invoice_number: string, issue_date: string, total: number, status: string, clients?: { name: string } }[] = [];
   
   if (user) {
     const { data: invoices } = await supabase

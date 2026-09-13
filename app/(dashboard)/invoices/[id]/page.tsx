@@ -250,7 +250,7 @@ export default function InvoiceDetailPage({ params }: { params: Promise<{ id: st
               </tr>
             </thead>
             <tbody className="divide-y divide-border/50">
-              {invoice.invoice_items?.map((item: any) => (
+              {invoice.invoice_items?.map((item: { id: string, description: string, quantity: number, unit_price: number }) => (
                 <tr key={item.id} className="text-primary text-sm">
                   <td className="py-4">{item.description}</td>
                   <td className="py-4 text-right">{item.quantity}</td>

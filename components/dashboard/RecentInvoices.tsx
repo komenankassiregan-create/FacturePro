@@ -12,7 +12,7 @@ const statusLabels: Record<string, string> = {
   draft: "Brouillon"
 };
 
-export function RecentInvoices({ invoices }: { invoices: any[] }) {
+export function RecentInvoices({ invoices }: { invoices: { id: string, invoice_number: string, issue_date: string, total: number, status: string, clients?: { name: string } }[] }) {
   return (
     <Card className="flex flex-col h-full">
       <div className="flex items-center justify-between mb-6">
